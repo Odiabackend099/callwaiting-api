@@ -1,0 +1,19 @@
+[Unit]
+Description=CallWaiting.ai API Auto-Restart Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root
+ExecStart=/root/callwaiting-api/auto-restart.sh monitor
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Environment variables
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
